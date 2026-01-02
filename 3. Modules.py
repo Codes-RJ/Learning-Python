@@ -4,7 +4,7 @@
 # |    |  |   |    |    |   |
 # |    |  |   |    |    |   |
 
-"""
+
 # math.ceil(x): Returns the smallest integer greater than or equal to ( x ).
 # Python
 
@@ -160,7 +160,7 @@ print(math.pi)  # Output: 3.141592653589793
 
 import math
 print(math.e)  # Output: 2.718281828459045
-"""
+
 
 #######################################################################################################
 #######################################################################################################
@@ -172,7 +172,7 @@ print(math.e)  # Output: 2.718281828459045
 # |      |    |  |   |    |    |   |
 # +---+  |    |  |   |    |    |   |
 
-"""
+
 # 1. cmath module: Used for complex number mathematical operations.
 # Python
 
@@ -319,7 +319,7 @@ print(cmath.pi)  # Output: 3.141592653589793
 # Python
 
 print(cmath.e)  # Output: 2.718281828459045
-"""
+
 
 #######################################################################################################
 #######################################################################################################
@@ -332,7 +332,7 @@ print(cmath.e)  # Output: 2.718281828459045
 # | \    |   |  |   \|  |  /   |   |  |      |
 # |  \   |   |  |    |  +-+    +---+  |      |
 
-"""
+
 # 1. random.random()
 # Generates a random float number between 0.0 and 1.0.
 # Python
@@ -390,7 +390,7 @@ print(random.uniform(1.5, 10.5))
 
 print(random.triangular(1.0, 10.0, 5.0))
 # Output: A random float between 1.0 and 10.0, with 5.0 being the most frequent value
-"""
+
 
 #######################################################################################################
 #######################################################################################################
@@ -402,7 +402,7 @@ print(random.triangular(1.0, 10.0, 5.0))
 #     |    |    |   |   |     |       |    |    |   |          |
 # +---+    |    |   |   |    -+-  +---+    |   -+-  +---+  +---+
 
-"""
+
 import statistics
 
 # 1. statistics.mean(data)
@@ -538,7 +538,7 @@ print("Covariance:", covariance_value)
 quantiles_value = statistics.quantiles(data, n=4)
 print("Quantiles:", quantiles_value)
 # Output: Quantiles: [6.5, 10.0, 13.5]
-"""
+
 
 #######################################################################################################
 #######################################################################################################
@@ -550,7 +550,7 @@ print("Quantiles:", quantiles_value)
 #     |     |         |
 # +---+     |     +---+
 
-"""
+
 # sys module: Provides access to some variables used or maintained by the Python interpreter.
 # Python
 
@@ -645,7 +645,7 @@ print(sys.flags)  # Output: sys.flags(debug=0, inspect=0, ...)
 # Python
 
 print(sys.executable)  # Output: e.g., '/usr/bin/python3'
-"""
+
 
 #######################################################################################################
 #######################################################################################################
@@ -657,7 +657,7 @@ print(sys.executable)  # Output: e.g., '/usr/bin/python3'
 #   |     |   |      | |
 #   |   --+-- |      | +----
 
-"""
+
 # time module: Provides time-related functions.
 # Python
 
@@ -724,7 +724,7 @@ start = time.process_time()
 # <<<Some code here>>>
 end = time.process_time()
 print(end - start)  # Output: <<<CPU time used>>>
-"""
+
 
 #######################################################################################################
 #######################################################################################################
@@ -736,7 +736,7 @@ print(end - start)  # Output: <<<CPU time used>>>
 # |  ++ |   |   |   |          |     |   |      | |
 # +--+  |   |   |   +----      |   --+-- |      | +----
 
-"""
+
 # datetime module: Supplies classes for manipulating dates and times.
 # Python
 
@@ -839,8 +839,293 @@ print(datetime.date(2025, 6, 12).isoweekday())  # Output: 4 (Thursday)
 # Python
 
 print(datetime.datetime.now().isoformat())  # Output: '2025-06-12T16:00:00.123456'
-"""
+
 
 #######################################################################################################
 #######################################################################################################
 #######################################################################################################
+
+# +---+  +---+  +---+  \     /
+# |      |   |  |   |   \   /
+# |      |   |  +---+    \ /
+# |      |   |  |         |
+# +---+  +---+  |         |
+
+
+# The copy module is used to duplicate objects, providing shallow and deep copying.
+
+# copy.copy(x): Returns a shallow copy of object ( x ).
+# Python
+
+import copy
+lst = [1, 2, [3, 4]]
+shallow = copy.copy(lst)
+print(shallow)  # Output: [1, 2, [3, 4]]
+
+# copy.deepcopy(x): Returns a deep copy of object ( x ).
+# Python
+
+import copy
+lst = [1, 2, [3, 4]]
+deep = copy.deepcopy(lst)
+print(deep)  # Output: [1, 2, [3, 4]]
+
+# Difference demonstration (shallow vs deep)
+# Python
+
+import copy
+lst = [1, 2, [3, 4]]
+
+shallow = copy.copy(lst)
+deep = copy.deepcopy(lst)
+
+lst[2].append(5)
+
+print(shallow)  # Output: [1, 2, [3, 4, 5]]
+print(deep)     # Output: [1, 2, [3, 4]]
+
+# copy.copy() does NOT copy nested objects (references are shared)
+# copy.deepcopy() copies all nested objects recursively
+
+# Copying immutable objects (no real effect)
+# Python
+
+import copy
+x = 10
+y = copy.copy(x)
+z = copy.deepcopy(x)
+
+print(x, y, z)  # Output: 10 10 10
+
+# Copying dictionary using shallow copy
+# Python
+
+import copy
+d = {"a": 1, "b": [2, 3]}
+d_copy = copy.copy(d)
+print(d_copy)  # Output: {'a': 1, 'b': [2, 3]}
+
+# Copying dictionary using deep copy
+# Python
+
+import copy
+d = {"a": 1, "b": [2, 3]}
+d_deep = copy.deepcopy(d)
+print(d_deep)  # Output: {'a': 1, 'b': [2, 3]}
+
+# Manual shallow copy alternatives (built-in)
+# Python
+
+lst = [1, 2, 3]
+lst2 = lst[:]          # slice copy
+lst3 = list(lst)       # list constructor
+lst4 = lst.copy()      # list method
+
+print(lst2, lst3, lst4)
+
+# Manual shallow copy for dict
+# Python
+
+d = {"x": 1, "y": 2}
+d2 = d.copy()
+print(d2)  # Output: {'x': 1, 'y': 2}
+
+
+#######################################################################################################
+#######################################################################################################
+#######################################################################################################
+
+# +---+  +---+  +---+  +   +  +     +---+  +---+
+# |   |  |      |      |   |  |     |   |  |   |
+# +---+  +---+  | +-+  |   |  |     +---+  +---+
+# | \    |      |   |  |   |  |     |   |  | \
+# |  \   +---+  +---+  +---+  +---+ |   |  |  \
+
+
+import re
+
+# 1. match(What_To_Find, From_Where_To_Search)                            # Checks a definite number letters and tells if they match of not
+
+a = "ABCD"
+if re.match(a,"ABCD"):                                                    # Will return true if first 4 letters of 'string' and 'a' are same
+    print("True 1")
+else:
+    print("False 1")
+
+if re.match(a,"ABC"):
+    print("True 2")
+else:
+    print("False 2")
+
+if re.match(a,"ABCDEFGH"):
+    print("True 3")
+else:
+    print("False 3")
+
+if re.match(a,"EABCD"):
+    print("True 4")
+else:
+    print("False 4")
+
+# 2. findall(What_To_Find, From_Where_To_Search, flags)
+
+a = "ABCD"
+print(re.findall("ABCD",a))
+
+text = "My phone number is 9876543210 and office is 0123456789"
+numbers = re.findall(r'\d+', text)                                        # \d+ means 'numbers' only
+print(numbers)
+
+text = "Python is fun and powerful!"
+words = re.findall(r'\w+', text)                                          # \w+ means 'words' only
+print(words)
+
+text = "Python is Amazing. PYTHON is versatile."
+matches = re.findall(r'python', text, re.IGNORECASE)
+print(matches)
+
+text = "Email: abc@example.com and xyz@test.com"
+emails = re.findall(r"\w+@\w+\.\w+", text)
+print(emails)
+
+
+# 3. search(What_To_Find, From_Where_To_Search, flags)
+
+text = "Welcome to Python programming"
+result = re.search("program", text)                                       # Unlike match which checks only first 4 letters, it searches the entirety of string
+if result:
+    print("Found:", result.group())
+else:
+    print("Not found")
+
+text = "ID: 5678"
+result = re.search(r"\d+", text)
+print("Found:", result.group())
+
+# fullmatch(pattern, string, flags)
+
+print(re.fullmatch(r"\d+", "12345"))                                      # full match (digits only)
+print(re.fullmatch(r"\d+", "123abc"))                                     # not a full match
+
+# sub(pattern, replacement, string, count=0, flags=0)
+
+text = "I love Python. Python is great."
+result = re.sub(r"Python", "Java", text)
+print(result)
+
+text = "apple, apple, apple"
+result = re.sub(r"apple", "orange", text, count=2)
+print(result)
+
+text = "My ID is 12345 and PIN is 6789"
+result = re.sub(r"\d", "", text)
+print(result)
+
+text = "Too     many    spaces"
+result = re.sub(r"\s+", " ", text)                                        # Replaces extra spaces
+print(result)
+
+# Characters and character sequences
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# Matches any one of a, b, or c
+print(re.findall(r"[abc]", "apple banana cherry"))
+
+# Matches any lowercase letter
+print(re.findall(r"[a-z]", "ABCdef123"))
+
+# Matches any uppercase letter
+print(re.findall(r"[A-Z]", "AbCdEf"))
+
+# Matches any digit from 0 to 9
+print(re.findall(r"[0-9]", "Room 123"))
+
+# Matches any character except a, b, or c
+print(re.findall(r"[^abc]", "abcxyz"))
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# \d matches any digit
+print(re.findall(r"\d", "Phone: 123-456"))
+
+# \D matches any non-digit character
+print(re.findall(r"\D", "Phone: 123-456"))
+
+# \w matches any alphanumeric character or underscore
+print(re.findall(r"\w", "Hi_123!"))
+
+# \W matches any non-alphanumeric character
+print(re.findall(r"\W", "Hi_123!"))
+
+# \s matches any whitespace character (space, tab, newline)
+print(re.findall(r"\s", "New York\nCity"))
+
+# \S matches any non-whitespace character
+print(re.findall(r"\S", "New York"))
+
+# \b matches word boundaries
+print(re.findall(r"\bcat", "cat scatter catalog"))
+
+# \B matches positions that are not word boundaries
+print(re.findall(r"\Bcat", "cat scatter catalog"))
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# * matches 0 or more of the preceding expression
+print(re.findall(r"ab*", "a ab abb abbb"))
+
+# + matches 1 or more of the preceding expression
+print(re.findall(r"ab+", "a ab abb abbb"))
+
+# ? matches 0 or 1 of the preceding expression
+print(re.findall(r"ab?", "a ab abb abbb"))
+
+# {2} matches exactly 2 repetitions of 'a'
+print(re.findall(r"a{2}", "aa aaa aaaa"))
+
+# {2,} matches 2 or more repetitions of 'a'
+print(re.findall(r"a{2,}", "aa aaa aaaa"))
+
+# {2,3} matches between 2 and 3 repetitions of 'a'
+print(re.findall(r"a{2,3}", "aa aaa aaaa"))
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# ^ matches the start of a string
+print(re.findall(r"^Hello", "Hello World"))
+
+# $ matches the end of a string
+print(re.findall(r"World$", "Hello World"))
+
+# 5. Groups and Alternation
+
+# (ha)+ matches one or more repetitions of 'ha'
+print(re.findall(r"(ha)+", "hahaha"))
+
+# cat|dog matches either 'cat' or 'dog'
+print(re.findall(r"cat|dog", "I love my cat and dog"))
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# Escaping '.' which is otherwise a wildcard
+print(re.findall(r"\.", "price is 10.99"))
+
+# Escaping '$' which has special meaning in regex
+print(re.findall(r"\$", "Cost is $5"))
+
+# Escaping brackets to match literal [test]
+print(re.findall(r"\[test\]", "Check [test]"))
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+sample_text = "My ID is A123, and I paid $20.50 for 3 items on 2025-07-09."
+
+# Matches an uppercase letter followed by digits (like an ID)
+print(re.findall(r"[A-Z]\d+", sample_text))         # ['A123']
+
+# Matches floating point numbers
+print(re.findall(r"\d+\.\d+", sample_text))         # ['20.50']
+
+# Matches date format YYYY-MM-DD
+print(re.findall(r"\d{4}-\d{2}-\d{2}", sample_text)) # ['2025-07-09']
