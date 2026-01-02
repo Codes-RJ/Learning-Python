@@ -271,6 +271,10 @@ print("%s's marks: %d" % (name, marks))
 """ 4th Method """
 print("{0}'s marks: {1}".format(name, marks))
 
+print(ord('a'))                          # Tells the ASCII value of character 'a'
+
+print(chr(97))                         # Tells the character of ASCII value 97
+
 
 ##################################################################################################################################################
 
@@ -328,8 +332,13 @@ print(f"Name:{A}")                    # Speciality in V S Code
 ##################################################################################################################################################
 
 
-a=round(6.4+9.45)                  # Gives round integer data type figure of 'a'
-print(a)                           # A number x.5 will return x+1
+print(max(4,7,2,9,1))                  # Gives maximum number from the given numbers
+print(min(4,7,2,9,1))                  # Gives minimum number from the given numbers
+print(abs(-56))                        # Gives absolute value of the number
+print(pow(3,4))                        # Gives 3 raised to power 4
+
+a=round(6.4+9.45)                      # Gives round integer data type figure of 'a'
+print(a)                               # A number x.5 will return x+1
 
 #########################################################################
 #For printing a statement for a desired number of times using while loop#
@@ -362,19 +371,22 @@ while i<=4:
 # if-elif-else statement #
 ##########################
 
+# Block Structure
+
 """
 if (Condition1):
-      Statement1
+      "Statement1"
 elif (Condition2):
-      Statement2
-else (Condition3):
-      Statement3
+      "Statement2"
+else:
+      "Statement3"
 
 Which statement will execute depends on which condition is met by the  variable or something
 """
 
+# Short Hand if-else --or-- Ternary Operator
 """
-statement1 if condition1 else condition2 if condition2 else statement3 
+"Statement1" if (Condition1) else "Statement" if (Condition2) else "Statement3 "
 """
 
 
@@ -558,6 +570,7 @@ for I in range(1,15,2):
 ###########
 # Strings #
 ###########
+"""Immutable Data Type"""
 
 print('Hello'+'Coders')
 
@@ -581,14 +594,10 @@ S.endswith('O')                            # Checks if the string ends with a pa
 str="missisipi"
 print(str.capitalize())                    # Capitalizes the first letter of the string
 
-print(str.replace('pi', 'ppi'))            # Replaces the first presence of 'pi' to 'ppi'
-
-print(str.find('si'))                      # Finds the first index value of occurence of 'si'
-
 print(str.count('si'))                     # Counts the number of times 'si' occurs in the string 
 
-S1="NEGATIVE"                  # N  E  G  A  T  I  V  E
-print(S1[-6:-2])               #-8 -7 -6 -5 -4 -3 -2 -1
+S1="NEGATIVE"                              # N  E  G  A  T  I  V  E
+print(S1[-6:-2])                           #-8 -7 -6 -5 -4 -3 -2 -1
 
 name="           Virat Kolhi Sir              "
 print(name.strip())                        # Replaces the space from start and end of the string
@@ -596,12 +605,51 @@ print(name.strip())                        # Replaces the space from start and e
 name="virat kolhi sir"
 print(name.title())                        # Capitalizes the first letter of every word of the string
 
+print(name.upper())                        # Converts the whole string to upper case letters
+
+print(name.lower())                        # Converts the whole string to lower case letters
+
+print(name.swapcase())                     # Converts upper case letters to lower case letters and vice versa
+
+print(name.isalpha())                      # Checks if all characters in the string are alphabets (no spaces or numbers)
+
+print(name.isalnum())                      # Checks if all characters in the string are alphanumeric (no spaces)
+
+print(name.islower())                      # Checks if all characters in the string are in lower case
+
+print(name.isupper())                      # Checks if all characters in the string are in upper case
+
+print(name.isspace())                      # Checks if all characters in the string are spaces
+
+print(name.index('k'))                     # Tells the index value of first occurence of 'k' in the string
+
+print(name.find('k'))                      # Tells the index value of first occurence of 'k' in the string
+
+print(name.replace('kolhi', 'kohli'))      # Replaces the first presence of 'kolhi' to 'kohli'
+
+print(name.startswith('v'))                # Checks if the string starts with a particular letter/Character/set of them
+
+print(name.endswith('r'))                  # Checks if the string ends with a particular letter/Character/set of them
+
+print('i' in name)                         # Checks if 'i' is present in the string and returns True or False
+
+print('z' not in name)                     # Checks if 'z' is not present in the string and returns True or False
+
+print(name.split(' '))                     # Splits the string from the given character and returns a list of strings
+
+print("Point"=="point")                    # Compares 2 strings and returns True if both are same else returns False
+
 
 #########
 # LISTS #
 #########
+"""Mutable Data Type"""
 
 List=['Senenteen',10,2.4,76]
+
+print(List)
+
+print(type(List))
 
 #Empty List : []
 #Single element list =[23,]
@@ -623,6 +671,8 @@ print(List)
 List.insert(3,51)                             # Adds '51' at the index value '3' of the list
 print(List)
 
+print(sorted(List))                            # Tells the sorted list in ascending order without changing the original list
+
 List.sort()                                   # Arranges the elements of the list in ascending order
 print(List)
 
@@ -640,12 +690,52 @@ print(List)
 
 print(type(List))
 
+list2=List.copy()                             # Copies the list to another list
+print(list2)
+
+list2.clear()                                 # Empties the list
+print(list2)
+
+list=[1,2,3,4,2,5,2,6]
+print(list)
+
+List+=list                                    # Extends the list by adding another list at the end of it
+print(List)
+
+List.extend(list)                             # Extends the list by adding another list at the end of it
+print(List)
+
+print(List.count(2))                          # Tells the number of times 2 occurs in the list
+
+print(3 in List)                              # Checks if 3 is present in the list and returns True or False
+
+print(9 not in List)                          # Checks if 9 is not present in the list and returns True or False
+
+print(max(List))                               # Tells the maximum element from the list
+
+print(min(List))                               # Tells the minimum element from the list
+
+print(sum(List))                               # Tells the sum of all elements from the list
+
+L=[[[3,6],[2,8]],[4,1],[9,5],7]                # Nested List
+
+print(L[2][1])                                 # Tells element at index 1 of list at index 2
+
+print(L[0][1][0])                              # Tells element at index 0 of list at index 1 of list at index 0
+
+print(L[-2][-1])                               # Tells element at index -1 of list at index -2
+
 
 ##########
 # TUPLES #
 ##########
+"""Immutable Data Type"""
 
 Tup=('Number',17,32,26,17)
+
+print(Tup)
+
+print(type(Tup))
 
 print(Tup[2])                                    # Tells element at index 2
 
@@ -657,10 +747,38 @@ print(Tup.index(32))                             # Tells index value of 32
 
 print(Tup.count(17))                             # Tells the number of times 17 occurs
 
+Tup2=('Rohan',18)
+
+Tup3=Tup+Tup2                                    # Concatenation of 2 tuples
+print(Tup3)
+
+print(len(Tup3))                                 # Tells the number of elements in the tuple
+
+print(max(Tup3))                                 # Tells the maximum element from the tuple
+
+print(min(Tup3))                                 # Tells the minimum element from the tuple
+
+print(sum((17,32,26,17)))                        # Tells the sum of all elements from the tuple
+
+print(sorted(Tup3))                              # Tells the sorted tuple in ascending order without changing the original tuple
+
+print(Tup.sorted())                              # Tells the sorted tuple in ascending order without changing the original tuple
+
+print(Tup.sorted(reverse=True))                  # Tells the sorted tuple in descending order without changing the original tuple
+
+#Tup.sort()                                      # ERROR because tuples are immutable
+
+print(tuple(List))                               # Converts a list into a tuple
+
+print(18 in Tup3)
+
+print(20 not in Tup3)
+
 
 ################
 # DICTIONARIES #
 ################
+"""Key : Immutable Data Type , Value : Mutable Data Type"""
 
 Dict={"Name":"Rohan",
       "subject":["Python", "Coding",11],
@@ -668,27 +786,66 @@ Dict={"Name":"Rohan",
       "topic":("dictionary","set",12),
       "another":{1:"R",2:"J"}}
 
+print(Dict)                                 # Prints the entire dictionary
+
 print(Dict['age'])
 
-Dict["Name"]="RJ"
+Dict["Name"]="RJ"                           # Changing the value of a given key by assigning new value to it
 print(Dict)
 
-print(Dict.keys())                      # Returns list of keys
+Dict['grade']='A'                           # Adding another key:value pair
+print(Dict)
 
-print(Dict.values())                    # Returns list of values
+print(Dict.keys())                          # Returns list of keys
 
-print(Dict.items())                     # prints (key,value) pairs in a list
+print(Dict.values())                        # Returns list of values
 
-print(Dict.get("Name"))                 # Returnd None if no such key exists
+print(Dict.items())                         # prints (key,value) pairs in a list
 
-Dict.update({"City":"Delhi"})           # Adds another key:value pair
+print(Dict.get("Name"))                     # Returns None if no such key exists instead of throwing an error else gives value of the key
+
+print(Dict.get("Names","Not Found"))        # Returns the default value provided if no such key exists
+
+print(Dict.setdefault("Name","Default"))    # Returns value of the key if it exists else adds the key with the default value provided
+
+print(Dict.pop("age"))                      # Removes the key:value pair and returns the value of the key
+
+Dict.update({"City":"Delhi"})               # Adds another key:value pair
+print(Dict)
+
+print(Dict.popitem())                       # Removes the last inserted key:value pair and returns it as a tuple
+
+print("Name" in Dict)
+
+print("age" not in Dict)
+
+print(len(Dict))                            # Returns number of key:value pairs in the dictionary
+
+print(type(Dict))                           # Returns the type of the data structure
+
+print(isinstance(Dict,dict))                # Returns True if the data structure is of the given type else returns False
+
+print(Dict.copy())                          # Returns a shallow copy of the dictionary
+
+print("RJ" in Dict)
+
+print("Delhi" not in Dict)
+
+print("RJ" in Dict.values())
+
+print(Dict.clear())                         # Removes all key:value pairs from the dictionary
+
+print(Dict.fromkeys(["a","b","c"],0))       # Creates a new dictionary with the given keys and assigns them the given default value
 
 
 ########
 # SETS #
 ########
+"""Mutable Data Type"""
 
-S={1,2,2,2,"Rohan",4.67}
+S={1,2,2,2,"Rohan",4.67}               # Sets are unordered & unindexed collections of unique elements
+
+print(S)                               # All same elements are converted into only one of them
 
 print(len(S))                          # All same elements are converted into only one of them
 
@@ -712,7 +869,51 @@ S2={3,4,5,6,7}
 
 print(S1.union(S2))                    # prints set of all elements in the set
 
+Sn = S1 | S2                           # Union of S1 and S2 (More the | symbol, more the sets can be unioned)
+print(Sn)
+
 print(S1.intersection(S2))             # prints common elements in the sets
+
+Sn = S1 & S2                           # Intersection of S1 and S2 (More the & symbol, more the sets can be intersected)
+
+print(S1.difference(S2))               # prints elements in S1 but not in S2
+
+Sn = S1 - S2                           # Difference of S1 and S2 (More the - symbol, more the sets can be differenced)
+print(Sn)
+
+print(S1.symmetric_difference(S2))     # prints elements in S1 and S2 but not in both
+
+print(S1.issubset(S2))                 # checks if S1 is subset of S2
+
+print(S1.issuperset(S2))               # checks if S1 is superset of S2
+
+print(S1.isdisjoint(S2))               # checks if S1 and S2 have no elements in common
+
+print(2 in S1)                         # checks if 2 is present in S1
+
+print(9 not in S2)                     # checks if 9 is not present in S2
+
+#S3 = S1 + S2                          # ERROR because sets do not support concatenation
+
+S3 = S1.copy()                         # Copies S1 to S3
+print(S3)
+
+S4 = S3.update({8,9})                  # Adds elements 8 and 9 to S3
+print(S4)
+
+
+###############
+# FROZEN SETS #
+###############
+"""Immutable Data Type"""
+
+FS=frozenset({1,2,3,4,5})
+
+print(FS)
+
+print(type(FS))
+
+#print(FS.add(6))                      # ERROR because frozensets are immutable
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -1033,6 +1234,9 @@ GO TO "FILE HANDLING" File FOR THE EXAMPLES FOR ABOVE TOPIC - ' Functions in a f
 4.  statistics module
 5.  pickle module                              - <<< Shown above >>> -
 6.  csv module                                 - <<< Shown above >>> -
+
+.... etc
+
 """
 
 """
@@ -1043,195 +1247,3 @@ GO TO "MODULE" File FOR THE FUNCTIONS AND EXAMPLES FOR ABOVE TOPIC - ' Modules '
 ######################################################################+====+#######################################################################
 ######################################################################|OOPS|#######################################################################
 ######################################################################+====+#######################################################################
-
-########################
-# REGULAR  EXPRESSIONS #
-########################
-
-import re
-
-# 1. match(What_To_Find, From_Where_To_Search)                            # Checks a definite number letters and tells if they match of not
-
-a = "ABCD"
-if re.match(a,"ABCD"):                                                    # Will return true if first 4 letters of 'string' and 'a' are same
-    print("True 1")
-else:
-    print("False 1")
-
-if re.match(a,"ABC"):
-    print("True 2")
-else:
-    print("False 2")
-
-if re.match(a,"ABCDEFGH"):
-    print("True 3")
-else:
-    print("False 3")
-
-if re.match(a,"EABCD"):
-    print("True 4")
-else:
-    print("False 4")
-
-# 2. findall(What_To_Find, From_Where_To_Search, flags)
-
-a = "ABCD"
-print(re.findall("ABCD",a))
-
-text = "My phone number is 9876543210 and office is 0123456789"
-numbers = re.findall(r'\d+', text)                                        # \d+ means 'numbers' only
-print(numbers)
-
-text = "Python is fun and powerful!"
-words = re.findall(r'\w+', text)                                          # \w+ means 'words' only
-print(words)
-
-text = "Python is Amazing. PYTHON is versatile."
-matches = re.findall(r'python', text, re.IGNORECASE)
-print(matches)
-
-text = "Email: abc@example.com and xyz@test.com"
-emails = re.findall(r"\w+@\w+\.\w+", text)
-print(emails)
-
-
-# 3. search(What_To_Find, From_Where_To_Search, flags)
-
-text = "Welcome to Python programming"
-result = re.search("program", text)                                       # Unlike match which checks only first 4 letters, it searches the entirety of string
-if result:
-    print("Found:", result.group())
-else:
-    print("Not found")
-
-text = "ID: 5678"
-result = re.search(r"\d+", text)
-print("Found:", result.group())
-
-# fullmatch(pattern, string, flags)
-
-print(re.fullmatch(r"\d+", "12345"))                                      # full match (digits only)
-print(re.fullmatch(r"\d+", "123abc"))                                     # not a full match
-
-# sub(pattern, replacement, string, count=0, flags=0)
-
-text = "I love Python. Python is great."
-result = re.sub(r"Python", "Java", text)
-print(result)
-
-text = "apple, apple, apple"
-result = re.sub(r"apple", "orange", text, count=2)
-print(result)
-
-text = "My ID is 12345 and PIN is 6789"
-result = re.sub(r"\d", "", text)
-print(result)
-
-text = "Too     many    spaces"
-result = re.sub(r"\s+", " ", text)                                        # Replaces extra spaces
-print(result)
-
-# Characters and character sequences
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-# Matches any one of a, b, or c
-print(re.findall(r"[abc]", "apple banana cherry"))
-
-# Matches any lowercase letter
-print(re.findall(r"[a-z]", "ABCdef123"))
-
-# Matches any uppercase letter
-print(re.findall(r"[A-Z]", "AbCdEf"))
-
-# Matches any digit from 0 to 9
-print(re.findall(r"[0-9]", "Room 123"))
-
-# Matches any character except a, b, or c
-print(re.findall(r"[^abc]", "abcxyz"))
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-# \d matches any digit
-print(re.findall(r"\d", "Phone: 123-456"))
-
-# \D matches any non-digit character
-print(re.findall(r"\D", "Phone: 123-456"))
-
-# \w matches any alphanumeric character or underscore
-print(re.findall(r"\w", "Hi_123!"))
-
-# \W matches any non-alphanumeric character
-print(re.findall(r"\W", "Hi_123!"))
-
-# \s matches any whitespace character (space, tab, newline)
-print(re.findall(r"\s", "New York\nCity"))
-
-# \S matches any non-whitespace character
-print(re.findall(r"\S", "New York"))
-
-# \b matches word boundaries
-print(re.findall(r"\bcat", "cat scatter catalog"))
-
-# \B matches positions that are not word boundaries
-print(re.findall(r"\Bcat", "cat scatter catalog"))
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-# * matches 0 or more of the preceding expression
-print(re.findall(r"ab*", "a ab abb abbb"))
-
-# + matches 1 or more of the preceding expression
-print(re.findall(r"ab+", "a ab abb abbb"))
-
-# ? matches 0 or 1 of the preceding expression
-print(re.findall(r"ab?", "a ab abb abbb"))
-
-# {2} matches exactly 2 repetitions of 'a'
-print(re.findall(r"a{2}", "aa aaa aaaa"))
-
-# {2,} matches 2 or more repetitions of 'a'
-print(re.findall(r"a{2,}", "aa aaa aaaa"))
-
-# {2,3} matches between 2 and 3 repetitions of 'a'
-print(re.findall(r"a{2,3}", "aa aaa aaaa"))
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-# ^ matches the start of a string
-print(re.findall(r"^Hello", "Hello World"))
-
-# $ matches the end of a string
-print(re.findall(r"World$", "Hello World"))
-
-# 5. Groups and Alternation
-
-# (ha)+ matches one or more repetitions of 'ha'
-print(re.findall(r"(ha)+", "hahaha"))
-
-# cat|dog matches either 'cat' or 'dog'
-print(re.findall(r"cat|dog", "I love my cat and dog"))
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-# Escaping '.' which is otherwise a wildcard
-print(re.findall(r"\.", "price is 10.99"))
-
-# Escaping '$' which has special meaning in regex
-print(re.findall(r"\$", "Cost is $5"))
-
-# Escaping brackets to match literal [test]
-print(re.findall(r"\[test\]", "Check [test]"))
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-sample_text = "My ID is A123, and I paid $20.50 for 3 items on 2025-07-09."
-
-# Matches an uppercase letter followed by digits (like an ID)
-print(re.findall(r"[A-Z]\d+", sample_text))         # ['A123']
-
-# Matches floating point numbers
-print(re.findall(r"\d+\.\d+", sample_text))         # ['20.50']
-
-# Matches date format YYYY-MM-DD
-print(re.findall(r"\d{4}-\d{2}-\d{2}", sample_text)) # ['2025-07-09']
