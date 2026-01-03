@@ -400,6 +400,11 @@ for i in range(1, 4):              # Nested for loop
     for j in range(1, 4):
         print(i, j)
 
+for el in List:                    # Printing the elements in a list
+    print(el)
+else:                              # Executes after the loop is over
+    print('Over')
+
 
 ###############
 # While Loops #
@@ -551,73 +556,6 @@ def sum(x,y):
     return x+y
 
 sum = reduce(sum,num)
-
-
-##################################
-#Printing the elements in a list #
-##################################
-
-List=[1,2,3,4]
-for el in List:
-    print(el)
-
-
-#####################################################
-#Printing the elements in a list and Over at the end#
-#####################################################
-
-for el in List:
-    print(el)
-else:
-    print('Over')
-
-
-#################################
-#Finding an element from a tuple#
-#################################
-
-Num=(1,3,5,8,6,9,11)
-X=int(input("Enter the number:"))
-i=0
-while i<len(Num):
-    if Num[i]==X:
-        print('found')
-        break
-    else:
-         print('searching')
-    i+=1
-
-
-####################################################
-#Code for printing all odd numbers between 1 to 10 #
-####################################################
-
-i=1
-while i<=10:
-    if (i%2!=0):
-        print(i)
-    i+=1
-
-
-########################################
-#Code to find a character from a string#
-######################################## 
-
-A="Rohan"
-for I in A:
-    if I=='h':
-        print('Found')
-        break
-    else:
-        print('Search')
-
-
-###################################################
-#Printing numbers at an interval of 2 from 1 to 15#
-###################################################
-
-for I in range(1,15,2):
-    print(I)
 
 
 ###########
@@ -1300,4 +1238,5 @@ GO TO "MODULE" File FOR THE FUNCTIONS AND EXAMPLES FOR ABOVE TOPIC - ' Modules '
 ######################################################################+====+#######################################################################
 ######################################################################|OOPS|#######################################################################
 ######################################################################+====+#######################################################################
+
 
