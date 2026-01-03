@@ -340,32 +340,6 @@ print(pow(3,4))                        # Gives 3 raised to power 4
 a=round(6.4+9.45)                      # Gives round integer data type figure of 'a'
 print(a)                               # A number x.5 will return x+1
 
-#########################################################################
-#For printing a statement for a desired number of times using while loop#
-#########################################################################
-
-Count=1
-while Count<=3:
-    print('Yo')
-    Count+=1
-
-
-#####################################
-#For printing 'Its (number-->1 to 4)#
-#####################################
- 
-i=1
-while i<=4:
-    print("Its",i)
-    i+=1
-
-
-##################################################################################################
-#---------------------------------------For printing a statement infinite times using while loop #
-#---------------------------------------while True:                                              #
-#---------------------------------------    print('Hi')                                          #
-##################################################################################################
-
 
 ##########################
 # if-elif-else statement #
@@ -388,6 +362,85 @@ Which statement will execute depends on which condition is met by the  variable 
 """
 "Statement1" if (Condition1) else "Statement" if (Condition2) else "Statement3 "
 """
+
+
+#############
+# For Loops #
+#############
+
+# Structure
+"""
+for <variable> in <iterable>:
+    (Code Block)
+"""
+# Example
+for i in range(5):                 # Prints numbers from 0 to 4
+    print(i)
+
+for i in range(1,6):               # Prints numbers from 1 to 5
+    print(i)
+
+for i in range(1,11,2):            # Prints numbers from 1 to 10 at an interval of 2
+    print(i)
+
+for i in range(10, 0, -1):         # Prints numbers from 10 to 1 in descending order
+    print(i)
+
+for i in "Python":                 # Prints each character of the string 'Python' in a new line
+    print(i)
+
+for i in [2,4,6,8,10]:             # Prints each element of the list in a new line
+    print(i)
+
+numbers = [10, 20, 30]
+for i in range(len(numbers)):      # Prints each element of the list in a new line
+    print(numbers[i])
+
+for i in range(1, 4):              # Nested for loop
+    for j in range(1, 4):
+        print(i, j)
+
+
+###############
+# While Loops #
+###############
+
+# Structure
+"""
+while (Condition):
+    (Code Block)
+"""
+
+# Example
+i=1
+while i<=5:                      # Prints numbers from 1 to 5
+    print(i)
+    i+=1
+
+while False:                  # Does not print anything as condition is false
+    print("Hello")
+
+while True:                   # Prints 'Hello' infinite times as condition is true
+    print("Hello")
+
+while True:
+    print("Hello")
+    break                      # Breaks the infinite loop
+
+while True:
+    print("Hello")
+    continue                   # Continues the infinite loop
+
+while True:
+    print("Hello")
+    pass                       # Does nothing and continues the infinite loop
+
+i = 1
+while i <= 10:
+    if i == 6:
+        break
+    print(i)
+    i += 1
 
 
 ##################
@@ -1247,3 +1300,4 @@ GO TO "MODULE" File FOR THE FUNCTIONS AND EXAMPLES FOR ABOVE TOPIC - ' Modules '
 ######################################################################+====+#######################################################################
 ######################################################################|OOPS|#######################################################################
 ######################################################################+====+#######################################################################
+
