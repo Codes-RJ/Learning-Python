@@ -390,4 +390,44 @@ def fibonacci(n):
     for _ in range(2, n):
         fib_series.append(fib_series[-1] + fib_series[-2])
     return fib_series
+
 print(fibonacci(10))
+
+
+#-------------------------------#
+# Deleting keys from Dictionary #
+#-------------------------------#
+
+my_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+# Delete key 'b'
+if 'b' in my_dict:
+    del my_dict['b']
+print(my_dict)
+
+my_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+# Delete key 'b' using pop
+removed_value = my_dict.pop('b', None)
+print(my_dict)
+print("Removed value:", removed_value)
+
+my_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+# Delete key 'b' and 'c' using pop with a loop
+for key in ['b', 'c']:
+    my_dict.pop(key, None)                               # Using None to avoid KeyError if key not found
+print(my_dict)
+
+my_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+# Delete key 'b' using popitem (removes last inserted item)
+removed_item = my_dict.popitem()                         # Note: popitem removes the last item, not a specific key
+print(my_dict)
+print("Removed item:", removed_item)
+
+my_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+# Clear the entire dictionary
+my_dict.clear()
+print(my_dict)
+
+my_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+# Delete the entire dictionary
+del my_dict
+# print(my_dict)                                         # This will raise an error since my_dict is deleted
