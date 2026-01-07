@@ -161,6 +161,27 @@ with open("sample.txt", "rb") as f:
 whence = 0: from beginning, whence = 1: from current position, whence = 2: from end (commonly used with negative offsets).
 """
 
+# 'x' = create a NEW text file for writing; ERROR if file already exists.
+try:
+    with open("only_once.txt", "x") as f:                                   # creates only_once.txt; fails if it already exists
+        f.write("Created with x mode (text file).\n")                       # write some text into the new file
+        f.write("This file will NOT be overwritten by x.\n")                # more text in same file
+except FileExistsError:
+    # This block runs if you run the script again (file already present)
+    print("only_once.txt already exists. 'x' will not overwrite it.")       # safety: no accidental data loss
+
+# 'x+' = create a NEW text file, open for reading and writing; ERROR if file exists.
+try:
+    with open("create_read.txt", "x+") as f:                                       # create file; error on second run
+        f.write("Hello Rohan\n")                                                   # write into the new text file
+        f.write("Learning file modes is easy.\n")                                  # another line
+        f.seek(0)                                                                  # move pointer back to start so we can read what we wrote
+        data = f.read()                                                            # read entire content of the file as a string
+        print("Content of create_read.txt:")                    
+        print(data)                                                                # shows both lines we wrote
+except FileExistsError:   
+    print("create_read.txt already exists. Cannot create again with x+ mode.")     # prevents overwrite
+
 
 ###########################################################################################
 ###########################################################################################
@@ -235,6 +256,14 @@ with open("raw.bin", "rb") as f:
     f.seek(3)                                     # go to 4th byte
     print(f.read(2))                              # b"DE"
     print(f.tell())                               # 5
+
+# 'xb' = create a NEW binary file; ERROR if file exists (useful with pickle, images, etc.).
+data = {"name": "Rohan", "topic": "file handling", "mode": "xb"}  # example dict to pickle
+try:
+    with open("binary_once.dat", "xb") as f:                              # create a new binary file; fail if already exists
+        pickle.dump(data, f)                                              # store the dictionary as binary (pickled object)
+except FileExistsError:
+    print("binary_once.dat already exists. 'xb' will not overwrite it.")
 
 
 ###########################################################################################
@@ -332,4 +361,5 @@ roll | name  | marks
 ############################################################################
 ############################################################################
 ############################################################################
+
 
