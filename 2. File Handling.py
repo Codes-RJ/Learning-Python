@@ -309,6 +309,17 @@ writer.writerows(list_of_lists) → writes multiple rows, one for each inner lis
 csv.reader(file) → reads each CSV line and returns rows as lists of strings.
 """
 
+# Writing through a Dictionary in CSV File
+with open("file.csv", "w", newline="") as f:
+    fieldnames = ["roll", "name", "marks"]
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerow({"roll": 1, "name": "Rohan", "marks": 95})
+"""
+roll | name  | marks
+-----+-------+------
+1    | Rohan | 95
+"""
 
 ############################################################################
 ############################################################################
@@ -321,3 +332,4 @@ csv.reader(file) → reads each CSV line and returns rows as lists of strings.
 ############################################################################
 ############################################################################
 ############################################################################
+
