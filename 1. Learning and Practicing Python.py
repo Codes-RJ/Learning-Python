@@ -452,16 +452,137 @@ while i <= 10:
 # Error Handling #
 ##################
 
-# Raising Custom Errors
+# 1. Syntax / "Compile-Time" Errors
+"""
+SyntaxError : invalid Python syntax (missing colon, wrong keyword, etc.).
+IndentationError : indentation is wrong or inconsistent.
+TabError : mixing tabs and spaces in indentation.
+"""
+# Raised when Python cannot parse the code.
+# Program does not start execution if these exist.
 
-# Structure
+
+# 2. File / OS / Permission Related Errors
+"""
+OSError               : base class for OS-related errors.
+FileNotFoundError     : file or directory does not exist.
+FileExistsError       : trying to create a file/directory that already exists.
+PermissionError       : insufficient permissions.
+IsADirectoryError     : directory given where file expected.
+NotADirectoryError    : file given where directory expected.
+TimeoutError          : operation timed out.
+EOFError              : end-of-file reached while reading input.
+"""
+# Common in file handling and system operations.
+
+
+# 3. Math / Numeric Related Errors
+"""
+ArithmeticError       : base class for numeric errors.
+ZeroDivisionError     : division or modulo by zero.
+OverflowError         : numeric result too large.
+FloatingPointError    : floating-point calculation failure.
+"""
+# Occur during mathematical computations.
+
+
+# 4. Data / Logic Related Errors
+"""
+TypeError             : wrong type used in operation/function.
+ValueError            : correct type but invalid value.
+IndexError            : sequence index out of range.
+KeyError              : dictionary key not found.
+AttributeError        : attribute does not exist.
+NameError             : variable or name not defined.
+UnboundLocalError     : local variable referenced before assignment.
+RuntimeError          : generic runtime error.
+RecursionError        : maximum recursion depth exceeded.
+"""
+# Most common runtime errors in logic and data handling.
+
+
+# 5. Import / Unicode / Control Flow Errors
+"""
+ImportError           : import failed.
+ModuleNotFoundError   : module does not exist.
+UnicodeError          : base class for Unicode issues.
+UnicodeDecodeError    : bytes to string decoding failed.
+UnicodeEncodeError    : string to bytes encoding failed.
+UnicodeTranslateError : Unicode translation failed.
+StopIteration         : iterator has no more values.
+KeyboardInterrupt     : program interrupted by user (Ctrl+C).
+SystemExit            : program termination via sys.exit().
+"""
+# Related to imports, encoding, and execution control.
+
+
+# 6. Assertion & Debugging Errors
+"""
+AssertionError        : raised when an assert statement fails.
+"""
+# Used mainly for testing and debugging.
+
+
+# 7. Memory & Resource Errors
+"""
+MemoryError           : program runs out of memory.
+BufferError           : buffer-related operation failed.
+ReferenceError        : weak reference object no longer exists.
+"""
+# Occur when system resources are exhausted or misused.
+
+
+# 8. Generator / Coroutine Errors
+"""
+GeneratorExit         : generator is closed.
+StopAsyncIteration    : async iterator has no more items.
+"""
+# Related to generators and async programming.
+
+
+# 9. Lookup Base Error
+"""
+LookupError           : base class for lookup failures.
+"""
+# Parent class of IndexError and KeyError.
+
+
+# 10. Warnings (Not Errors by Default)
+"""
+Warning               : base class for warnings.
+DeprecationWarning    : deprecated feature used.
+RuntimeWarning        : runtime-related warning.
+SyntaxWarning         : suspicious syntax.
+UserWarning           : user-defined warning.
+FutureWarning         : future behavior change warning.
+"""
+# Do not stop execution unless explicitly treated as errors.
+
+
+# 11. Raising Custom Errors
+# Structure :-
 """
 raise <Error Type>("Message")
 """
-
 a-int(input("Enter a number between 1 and 10 : "))
 if a<1 or a>10:
     raise ValueError("You Have an Error Here")
+
+
+#======== | Hierachy in errors :- | ========#
+"""
+BaseException
+ ├── Exception
+ │   ├── ArithmeticError
+ │   ├── LookupError
+ │   ├── RuntimeError
+ │   ├── ValueError
+ │   ├── TypeError
+ │   └── YourCustomError   ← user-defined
+ ├── SystemExit
+ ├── KeyboardInterrupt
+ └── GeneratorExit
+"""
 
 
 #############################
@@ -472,10 +593,84 @@ if a<1 or a>10:
 try:
     (Usually taking some input)
 except <error name>:
-    (Message in case of error)
+    (Message/Code in case of error of the specified type)
 else:
     (Rest of the code)
 """
+# or
+"""
+try:
+    (Usually taking some input)
+except:
+    (Message/Code in case of error of the any type)
+"""
+# or
+"""
+try:
+    (usually taking some input)
+    (code that might raise different specific errors)
+except <ErrorType1>:
+    (message/code in case of ErrorType1)
+except <ErrorType2>:
+    (message/code in case of ErrorType2)
+except <ErrorType3>:
+    (message/code in case of ErrorType3)
+# ... add more specific except blocks as needed
+else:
+    (rest of the code that runs only if no exception occurred)
+"""
+# or
+"""
+try:
+    (usually taking some input)
+    (code that might raise any of the grouped errors)
+except (<ErrorType1>, <ErrorType2>, <ErrorType3>):
+    (message/code for any of these errors)
+# optionally more specific handlers after that
+except <OtherErrorType>:
+    (message/code for this other error)
+else:
+    (rest of the code that runs only if no exception occurred)
+"""
+
+# Examples :-
+""" 1. """
+try:
+    a = int(input("Enter a number between 1 and 10: "))
+    if a < 1 or a > 10:
+        raise ValueError("Number out of range")
+except ValueError as e:
+    print("Error occurred:", e)
+else:
+    print("Valid input")
+
+""" 2. """
+try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+except:
+    print("Some error occurred. Please try again.")
+
+""" 3. """
+try:
+    num = int(input("Enter a number: "))      # may raise ValueError
+    result = 10 / num                         # may raise ZeroDivisionError
+except ValueError:
+    print("Please enter a valid integer.")
+except ZeroDivisionError:
+    print("You cannot divide by zero.")
+else:
+    print("Result is:", result)
+
+""" 4. """
+try:
+    text = input("Enter a number: ")
+    num = int(text)                           # may raise ValueError
+    result = 100 / num                        # may raise ZeroDivisionError
+except (ValueError, ZeroDivisionError):
+    print("Either the input was not an integer or division by zero happened.")
+else:
+    print("Result is:", result)
 
 
 ###############
@@ -1238,5 +1433,6 @@ GO TO "MODULE" File FOR THE FUNCTIONS AND EXAMPLES FOR ABOVE TOPIC - ' Modules '
 ######################################################################+====+#######################################################################
 ######################################################################|OOPS|#######################################################################
 ######################################################################+====+#######################################################################
+
 
 
