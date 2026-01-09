@@ -1129,3 +1129,94 @@ print(re.findall(r"\d+\.\d+", sample_text))         # ['20.50']
 
 # Matches date format YYYY-MM-DD
 print(re.findall(r"\d{4}-\d{2}-\d{2}", sample_text)) # ['2025-07-09']
+
+
+#######################################################################################################
+#######################################################################################################
+#######################################################################################################
+
+# ---+---  +---+  +---+  |\    |
+#    |     |      |   |  | \   |
+#    |     +---+  |   |  |  \  |
+# ^  |         |  |   |  |   \ |
+# +--+     +---+  +---+  |    \|
+
+import json
+"""
+The JSON module in Python is used to convert data between Python objects and JSON (JavaScript Object Notation) format.
+JSON is a lightweight, text-based data interchange format commonly used for data storage and data transfer between systems.
+"""
+"""
+| Python Type | JSON Type |
+| ----------- | --------- |
+| dict        | object    |
+| list        | array     |
+| tuple       | array     |
+| str         | string    |
+| int, float  | number    |
+| True        | true      |
+| False       | false     |
+| None        | null      |
+"""
+"""
+Only double quotes ("...") can be used inside a JSON File.
+No capital letters for Booleans
+"""
+
+# 1) json.dumps()  → Python object  ➜ JSON STRING
+#    "dump to STRING"
+data = {"name": "Alice", "age": 20}
+json_str = json.dumps(data)                       # Python dict → JSON text (string)
+print(json_str)                                   # '{"name": "Alice", "age": 20}'
+print(type(json_str))                             # <class 'str'>
+
+
+# 2) json.loads()  → JSON STRING ➜ Python object
+#    "load from STRING"
+json_str = '{"name": "Alice", "age": 20}'         # JSON text
+
+data = json.loads(json_str)                       # JSON text (string) → Python dict
+print(data)                                       # {'name': 'Alice', 'age': 20}
+print(type(data))                                 # <class 'dict'>
+
+
+# 3) json.dump()  → Python object ➜ JSON in FILE
+#    "dump to FILE"  (FILE HANDLING)
+data = {"name": "Bob", "age": 25}
+
+with open("student.json", "w", encoding="utf-8") as f:
+    json.dump(data, f)                            # writes JSON directly into file f
+
+# After this, student.json file contains: {"name": "Bob", "age": 25}
+
+
+# 4) json.load()  → JSON in FILE ➜ Python object
+#    "load from FILE"  (FILE HANDLING)
+with open("student.json", "r", encoding="utf-8") as f:
+    data_from_file = json.load(f)                 # reads JSON from file and converts to dict
+print(data_from_file)                             # {'name': 'Bob', 'age': 25}
+
+"""
+→ json.dump() and json.load() are used for FILE HANDLING because:
+  • json.dump() writes JSON directly into a file object (no extra string step).
+  • json.load() reads JSON directly from a file object and converts it to Python.
+  • They work with file pointers (fp), so they are convenient and memory‑efficient when the goal is to store or read JSON data from files.
+"""
+
+# Indenting the json dictionary
+
+data = {"name": "Alice", "age": 30, "skills": ["Python", "SQL"]}
+print(json.dumps(data))
+print(json.dumps(data, indent=4))
+"""
+{"name": "Alice", "age": 30, "skills": ["Python", "SQL"]}
+
+{
+    "name": "Alice",
+    "age": 30,
+    "skills": [
+        "Python",
+        "SQL"
+    ]
+}
+"""
