@@ -673,6 +673,34 @@ else:
     print("Result is:", result)
 
 
+#####################################
+# try-except-else-finally statement #
+#####################################
+"""
+try:
+    # Code that may raise an exception
+except SomeError:
+    # Executes only if the specified error occurs
+else:
+    # Executes only if NO exception occurs
+finally:
+    # Executes ALWAYS (error or no error)
+"""
+
+try:
+    a = int(input("Enter a number: "))
+    b = int(input("Enter another number: "))
+    result = a / b
+except ZeroDivisionError:
+    print("Error: Division by zero is not allowed.")
+except ValueError:
+    print("Error: Invalid input. Please enter integers only.")
+else:
+    print("Division result:", result)
+finally:
+    print("Program execution completed.")
+
+
 ###############
 # Enumeration #
 ###############
@@ -1433,6 +1461,7 @@ GO TO "MODULE" File FOR THE FUNCTIONS AND EXAMPLES FOR ABOVE TOPIC - ' Modules '
 ######################################################################+====+#######################################################################
 ######################################################################|OOPS|#######################################################################
 ######################################################################+====+#######################################################################
+
 
 
 
