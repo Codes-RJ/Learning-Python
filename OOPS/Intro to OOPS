@@ -1,0 +1,76 @@
+"""
+Focuses on creating "objects" that combine data and the functions that operate on that data.
+For e.g. - a Rectangle object that contains its length and width and has an area() method.
+Procedural coding → code repetition problem
+Functions → reduced repetition but lacked data security and structure
+OOP → better organization, security, reusability, and scalability
+"""
+
+# OOPS is based on 'Class' and 'Object' relationships.
+# Class
+"""
+A class is a blueprint, a template, or a prototype for creating objects.
+It defines the common attributes (data/properties) and methods (functions/behaviors) that all objects of that type will have.
+Classes don't store data themselves; they define the structure for data.
+"""
+# Object
+"""
+An object (also called an instance) is a concrete realization of a class.
+It's a specific entity created based on the class's blueprint.
+Each object has its own unique set of attribute values.
+"""
+# Attributes
+"""
+The attributes are the data associated with an object and its properties.
+"""
+
+#####################################################################################################################################################
+
+class Student:                        # Class
+    pass
+
+student1 = Student()                  # Object
+student1.name = "John"                # Attribute of student1 (external) - name
+student1.age = 18                     # Attribute of student1 (external) - age
+
+print(student1.name)
+print(student1.age)
+
+""" 
+This way, you will have to give each object their attributes individually in full follow up form.
+This is time taking so it is considered a wrong way.
+The one below is better way.
+"""
+#####################################################################################################################################################
+
+class Person:                         # Class named "Person"
+    def __init__(self, name, age):    # Constructor : __init__
+# "__init__" is a Dundar. It means 'Double Dash'. Anything with '__' around it is called a Dundar. Eg : '__main__'.
+        self.name = name              # self is a keyword that means that it's calling for itself.
+        self.age = age                # Name and Age are Instance Attributes
+    pass                              # If no functionality is given, we simply use pass
+
+P1 = Person("Bob", 22)                # Object (instances of the class) named "P1"
+                                      # "Bob" and 22 are the value of the attributes
+
+print(P1)
+
+#####################################################################################################################################################
+
+class Persons:                        # Class named "Persons".
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def getName(self):                # Instance Method 1 (Functionality) named 'getName'
+        return self.name
+    
+    def getAge(self):                 # Instance Method 2
+        return self.age
+
+P1 = Persons("Bob", 22)                # Object named "P1"
+                                       # "Bob" and 22 are values of attributes
+
+print(P1)
+print(P1.getName())
+print(P1.getAge())
