@@ -44,7 +44,7 @@ The one below is better way.
 #####################################################################################################################################################
 
 class Person:                         # Class named "Person"
-    def __init__(self, name, age):    # Constructor : __init__
+    def __init__(self, name, age):    # Constructor : __init__. Also a Initializer.
 # "__init__" is a Dundar. It means 'Double Dash'. Anything with '__' around it is called a Dundar. Eg : '__main__'.
         self.name = name              # self is a keyword that means that it's calling for itself.
         self.age = age                # Name and Age are Instance Attributes
@@ -53,24 +53,86 @@ class Person:                         # Class named "Person"
 P1 = Person("Bob", 22)                # Object (instances of the class) named "P1"
                                       # "Bob" and 22 are the value of the attributes
 
-print(P1)
+print(P1)                             # Output : <__main__.Person object at 0x00000190C6FC70E0>
+"""
+When you write print(P1) :-
+Python internally does the following:
+- print(P1.__str__())
+or, if __str__() is not defined:
+- print(P1.__repr__())
+
+In this Case, none of the two is defined.
+So Python falls back to the default implementation provided by the base object class.
+| Part                 | Meaning                                              |
+| -------------------- | ---------------------------------------------------- |
+| `__main__`           | The module where the class is defined (current file) |
+| `Person`             | Class name                                           |
+| `object`             | Indicates it is an object instance                   |
+| `0x00000190C6FC70E0` | Memory address of the object (in hexadecimal)        |
+"""
 
 #####################################################################################################################################################
 
 class Persons:                        # Class named "Persons".
-    def __init__(self, name, age):
+    def __init__(self, name, age):    # No need to give argument in () whose value is fixed already.
         self.name = name
         self.age = age
+        self.species = "Human"
 
     def getName(self):                # Instance Method 1 (Functionality) named 'getName'
         return self.name
     
     def getAge(self):                 # Instance Method 2
         return self.age
+    
+    def getSelf(self):
+        return self                   # Will give same value as its current object
 
 P1 = Persons("Bob", 22)                # Object named "P1"
                                        # "Bob" and 22 are values of attributes
+P2 = Persons("Ross",26)
 
 print(P1)
 print(P1.getName())
 print(P1.getAge())
+print(P1.__dict__)
+P1.hobby = "Cricket"
+print(P1.__dict__)
+
+print(P2.__dict__)
+
+
+"""
+When we call an instance method using the object/instance of the class, Python passes the object itself as the first argument to that ethod
+That first argument is self (by standard).
+P1.getName() is internally treated as Persons.getName(P1)
+"""
+
+###############################
+# Class Variables and Methods #
+###############################
+
+class Student:                                           # Class named "Student".
+                       
+    college = "ABC College"                              # Class Variable
+    section = ["CSE", "Electrical", "Mechanical"]        # Class Variable
+                       
+    def __init__(self, name, role):                      # No need to give argument in () whose value is fixed already.
+        self.name = name                   
+        self.roll = role
+        self.student = "Yes"
+                   
+    def getName(self):                                   # Instance Method 1 (Functionality) named 'getName'
+        return self.name                   
+                       
+    def getAge(self):                                    # Instance Method 2
+        return self.age
+    
+    def showCollege(self):
+        return self.college
+
+s1 = Student()
+print(s1.college)
+
+print(Student.college)
+print(Student.departments)
