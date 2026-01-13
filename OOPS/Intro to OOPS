@@ -131,8 +131,103 @@ class Student:                                           # Class named "Student"
     def showCollege(self):
         return self.college
 
-s1 = Student()
+s1 = Student("RJ","Student")
 print(s1.college)
+print(s1.section)
 
 print(Student.college)
-print(Student.departments)
+print(Student.section)
+
+
+"""_______________________________________________________________________________________________________________________________________________"""
+
+class Office:
+    
+    office = "ABC Work"
+    department = ["Sales", "HR", "Developer"]
+    
+    def __init__(self, name, role):
+        self.name = name
+        self.role = role
+        self.employee = "Yes"
+    
+    # ---------- Instance Methods ----------
+    def getName(self):
+        return self.name
+    
+    def getRole(self):
+        return self.role
+    
+    def showOffice(self):
+        return self.office
+    
+    # ---------- Class Methods (Decorators) ----------
+    @classmethod
+    def greet(cls):
+        print(f"Welcome to {cls.office}")
+    
+    @classmethod
+    def showDepartments(cls):
+        print("Departments available:")
+        for dept in cls.department:
+            print("-", dept)
+    
+    @classmethod
+    def changeOfficeName(cls, new_name):
+        cls.office = new_name
+    
+    @classmethod
+    def totalDepartments(cls):
+        return len(cls.department)
+
+w1 = Office("RJ", "Head")
+
+w1.greet()
+w1.showDepartments()
+
+Office.changeOfficeName("XYZ Corporation")
+w1.greet()
+
+print("Total departments:", Office.totalDepartments())
+
+
+#################
+# Static Method #
+#################
+
+class Office:
+    
+    office = "ABC Work"
+    department = ["Sales", "HR", "Developer"]
+    
+    def __init__(self, name, role):
+        self.name = name
+        self.role = role
+
+    def work(self, n):
+        return f"{self.name} works for {n} hours a day."
+    
+    # ---------- Static Method ----------
+    @staticmethod
+    def isValidRole(role):
+        return role in ["Head", "Manager", "Employee"]
+    
+    @staticmethod
+    def greetEmployee(name, office_name):
+        print(f"Welcome {name} to {office_name}")
+
+
+"""
+Static methods are utility functions placed inside a class that do not operate on instance or class data.
+No "self" or "cls" in it. 
+Data is entered directly when called.
+No dependency on class or instance.
+"""
+
+w1 = Office("RJ", "Head")
+print(Office.isValidRole("Head"))
+print(w1.isValidRole("Intern"))
+
+print(w1.work(6))
+
+Office.greetEmployee("RJ", "ABC Work")          # No Class dependency
