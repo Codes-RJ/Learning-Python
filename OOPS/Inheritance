@@ -1,1 +1,71 @@
+# === BASIC CONCEPT ===
+"""
+Inheritance allows a child class to reuse properties and methods of a parent class
+The parent class is also called the base or superclass
+The child class is also called the derived or subclass
+"""
 
+# === ADVANTAGES ===
+"""
+Inheritance promotes code reusability and reduces redundancy
+A child class can add new features without modifying the parent class
+A child class can override parent class methods if needed
+"""
+
+# === IMPLEMENTATION DETAILS ===
+"""
+Inheritance is implemented by passing the parent class in parentheses
+The super() function is used to access parent class methods or constructors
+"""
+
+# === CLASS RELATIONSHIP ===
+"""
+Inheritance follows an "is-a" relationship between classes,
+An “is-a” relationship means that the child class represents a specialized form of the parent class.
+Eg: If class B inherits from class A, then B is a type of A.
+"""
+
+# === PARENT CLASS ===
+# Car represents a general vehicle
+class Car:
+    def __init__(self, brand):
+        self.brand = brand
+        self.wheels = 4
+        self.seats = 5
+    
+    def drive(self):
+        print("Driving a regular car")
+    
+    def show_details(self):
+        print(f"Brand: {self.brand}, Wheels: {self.wheels}, Seats: {self.seats}")
+
+
+# === CHILD CLASS ===
+# SportsCar IS-A Car (single inheritance)
+class SportsCar(Car):
+    def __init__(self, brand):
+        super().__init__(brand)        # Access parent constructor
+        self.engine_power = "500 HP"
+        self.seats = 2                 # Overriding parent property
+    
+    # Method overriding
+    def drive(self):
+        print("Driving a sports car with high speed")
+    
+    def show_sports_features(self):
+        print(f"Engine Power: {self.engine_power}")
+
+
+# === OBJECT CREATION ===
+c1 = Car("Toyota")
+s1 = SportsCar("Ferrari")
+
+# === METHOD CALLS ===
+c1.show_details()
+c1.drive()
+
+print("----------------")
+
+s1.show_details()          # Inherited method
+s1.show_sports_features()  # Child-specific method
+s1.drive()                 # Overridden method
