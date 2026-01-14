@@ -25,6 +25,15 @@ An “is-a” relationship means that the child class represents a specialized f
 Eg: If class B inherits from class A, then B is a type of A.
 """
 
+#########################
+#  SINGLE  INHERITANCE  #
+#########################
+
+"""
+Meaning : One child class inherits from exactly one parent class.
+The child class can access all the public and protected members (methods and variables) of the parent class and can also define its own additional features.
+"""
+
 # === PARENT CLASS ===
 # Car represents a general vehicle
 class Car:
@@ -69,3 +78,136 @@ print("----------------")
 s1.show_details()          # Inherited method
 s1.show_sports_features()  # Child-specific method
 s1.drive()                 # Overridden method
+
+"""______________________________________________ Another Way (Less Used) _______________________________________________"""
+
+class Vehicle:
+    def __init__(self, seats, tyres, mileage, vehicle_type):
+        self.seats = seats
+        self.tyres = tyres
+        self.mileage = mileage
+        self.vehicle_type = vehicle_type
+
+    def details(self):
+        return (
+            f"Vehicle Type: {self.vehicle_type}\n"
+            f"Seats: {self.seats}\n"
+            f"Tyres: {self.tyres}\n"
+            f"Mileage: {self.mileage} km/l"
+        )
+
+
+# Single Inheritance
+class Vehicle:
+    def __init__(self, seats, tyres, mileage, vehicle_type):
+        self.seats = seats
+        self.tyres = tyres
+        self.mileage = mileage
+        self.vehicle_type = vehicle_type
+
+    def details(self):
+        return f"{self.vehicle_type}: {self.seats} seats, {self.tyres} tyres, {self.mileage} km/l"
+
+
+class Car(Vehicle):
+    def __init__(self, brand):
+        # Fixed, implicit properties of a car
+        Vehicle.__init__(self, 4, 4, 30, "Car")
+        self.brand = brand
+
+    def details(self):
+        return f"{super().details()}, Brand: {self.brand}"
+
+c = Car("Volvo")
+print(c.details())
+
+
+#########################
+# MULTIPLE  INHERITANCE #
+#########################
+
+"""
+Meaning: One class inherits from more than one parent class.
+"""
+
+class A:
+    def state1(self):
+        print("State 1")
+    def state2(self):
+        print("State 2")
+    def state3(self):
+        print("State 3")
+class B:
+    def state4(self):
+        print("State 4")
+    def state5(self):
+        print("State 5")
+    def state6(self):
+        print("State 6")
+class C(A, B):                        # C inherits from both A and B
+    def state7(self):
+        print("State 7")
+    def state8(self):
+        print("State 8")
+    def state9(self):
+        print("State 9")
+
+obj1 = C()
+obj1.state1()
+obj1.state3()
+
+obj2 = C()
+obj2.state4()
+obj2.state6()
+
+obj3 = C()
+obj3.state2()
+obj3.state5()
+obj3.state7()
+
+"""
+Eg : Take 'A' as Car and 'B' as Boat. Then, 'C' can be Vehicles.
+"""
+
+
+############################
+# MULTI-LEVEL  INHERITANCE #
+############################
+
+class A:
+    def state1(self):
+        print("State 1")
+    def state2(self):
+        print("State 2")
+    def state3(self):
+        print("State 3")
+
+class B(A):                           # B inherits from A
+    def state4(self):
+        print("State 4")
+    def state5(self):
+        print("State 5")
+    def state6(self):
+        print("State 6")
+
+class C(B):                           # C inherits from B (and indirectly from A)
+    def state7(self):
+        print("State 7")
+    def state8(self):
+        print("State 8")
+    def state9(self):
+        print("State 9")
+
+obj1 = B()
+obj1.state1()
+obj1.state3()
+obj1.state5()
+
+obj2 = C()
+obj2.state1()
+obj2.state4()
+obj2.state7()
+
+"""
+Eg : Consider 'A' as Vehicle class, then 'B' can be Car class that inherits from Vehicle, and then 'C' as an ElectricCar class that inherits from Car.
+"""
