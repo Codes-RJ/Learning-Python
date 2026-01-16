@@ -43,17 +43,56 @@ class Rectangle:
         # Here, '+' adds the lengths of two rectangles
         return self.length + other.length
 
+    def __gt__(self, other):
+        # Overloads '>' operator
+        return self.length > other.length
+
 r1 = Rectangle(5, 6)
 r2 = Rectangle(6, 9)
 
 print(r1.area())           # Area of first rectangle
 print(r2.area())           # Area of second rectangle
 print(r1 + r2)             # Calls r1.__add__(r2)
+print(n1 > n2)             # Calls r1.__gt__(r2)
 
 
 # 4. METHOD OVERLOADING (Simulated using default arguments)
-# Python does NOT support method overloading directly
-# It can be simulated using default or variable arguments
+
+"""
+Same method but you can pass different number or types of arguments in it.
+NOTE : 
+Python does NOT support method overloading directly.
+It can be simulated using default or variable arguments.
+"""
+
+"""
+class Calculator:
+    def add(self, a, b):
+        return a + b
+    def add(self, a, b, c):
+        return a + b + c
+
+calc = Calculator()
+print(calc.add(2, 3))      # Error
+print(calc.add(2, 3, 4))   # Works
+
+Explanation:
+------------
+This code raises an error for print(calc.add(2, 3)) because Python does NOT support method overloading like C or Java.
+
+When multiple methods have the same name in a class, Python keeps ONLY the LAST defined method. 
+Earlier methods with the same name are overwritten.
+
+So here:
+- add(self, a, b) is replaced by
+- add(self, a, b, c)
+
+As a result, Python always tries to call add(self, a, b, c), even when only two arguments are passed, causing a TypeError.
+
+Python does NOT choose methods based on argument count.
+It always resolves to the most recently defined method name.
+"""
+
 
 class Calculator:
     def add(self, a, b, c=0):
@@ -79,7 +118,18 @@ print(calc2.add(1, 2, 3, 4))
 
 
 # 6. METHOD OVERRIDING (Runtime Polymorphism)
-# Child class provides its own implementation of a method
+"""
+Method Overriding is a form of RUNTIME POLYMORPHISM.
+
+It occurs when:
+1. A child class inherits from a parent class
+2. The child class defines a method with:
+   - SAME method name
+   - SAME parameters
+3. The child method REPLACES (overrides) the parent method
+
+The method that gets executed depends on the OBJECT created, not the reference variable.
+"""
 
 class Shape:
     def area(self):
@@ -92,29 +142,52 @@ class RectangleShape(Shape):
 rs = RectangleShape()
 rs.area()                  # Child class method is called
 
-
-# 7. POLYMORPHISM USING INHERITANCE
-# Same method name, different behavior in different child classes
-
 class Animal:
     def sound(self):
+        # Parent class method
         print("Animal makes a sound")
 
 class Dog(Animal):
     def sound(self):
+        # Overridden method in child class
         print("Dog barks")
 
 class Cat(Animal):
     def sound(self):
+        # Overridden method in child class
         print("Cat meows")
 
-animals = [Dog(), Cat(), Animal()]
+# Creating objects
+a = Animal()
+d = Dog()
+c = Cat()
 
-for a in animals:
-    a.sound()               # Calls respective class method
+a.sound()   # Calls Animal.sound()
+d.sound()   # Calls Dog.sound()  (Overridden)
+c.sound()   # Calls Cat.sound()  (Overridden)
+
+animals = [Animal(), Dog(), Cat()]
+for obj in animals:
+    obj.sound()   # Runtime decides which method to execute
 
 
-# 8. DUCK TYPING
+# METHOD OVERRIDING WITH SUPER()
+# super() is used to call the parent class method from inside the child class
+
+class Vehicle:
+    def start(self):
+        print("Vehicle starting")
+
+class Car(Vehicle):
+    def start(self):
+        # Call parent class method
+        super().start()
+        print("Car started with ignition")
+c = Car()
+c.start()
+
+
+# 7. DUCK TYPING
 # Object type does not matter, only method behavior matters
 
 class Bird:
@@ -136,25 +209,9 @@ make_it_fly(b)
 make_it_fly(a)
 
 
-# 9. OPERATOR OVERLOADING (Comparison example)
-# Overloading comparison operators
 
-class Number:
-    def __init__(self, value):
-        self.value = value
-
-    def __gt__(self, other):
-        # Overloads '>' operator
-        return self.value > other.value
-
-n1 = Number(10)
-n2 = Number(5)
-
-print(n1 > n2)             # Calls n1.__gt__(n2)
-
-# ============================================================
 # DUNDER (MAGIC) METHODS IN PYTHON – ENHANCED NOTES
-# ============================================================
+
 # Dunder methods (Double UNDERscore methods) are special methods
 # in Python that begin and end with double underscores.
 #
@@ -163,7 +220,7 @@ print(n1 > n2)             # Calls n1.__gt__(n2)
 #
 # These methods define how objects of a class behave with
 # built-in functions and operators.
-# ============================================================
+
 
 
 """
@@ -298,7 +355,9 @@ print(n1 > n2)        # Calls n1.__gt__(n2)
 - 'value'  → Generic name used in built-in class definitions
 
 NOTE:
+-----
 These names are NOT keywords.
 They are just parameter names used by convention.
+
 You can rename them, but using standard names improves readability.
 """
