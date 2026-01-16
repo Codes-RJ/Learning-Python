@@ -1,1 +1,304 @@
+# POLYMORPHISM IN PYTHON
+"""
+Polymorphism means "many forms".
+In Python, the same function name, method name, or operator behaves differently depending on the object or data type.
+This single file demonstrates ALL major types of polymorphism using clear examples and explanatory comments.
+"""
 
+
+# 1. FUNCTION POLYMORPHISM (Built-in functions)
+# Same function works with different data types
+
+print(len("Hello"))        # len() returns length of a string
+print(len([1, 2, 3, 4]))   # len() returns number of elements in a list
+print(len((10, 20)))       # len() returns number of elements in a tuple
+
+
+# 2. OPERATOR POLYMORPHISM (Built-in behavior)
+# Same operator behaves differently for different data types
+
+a = 10
+b = 5
+print(a + b)               # '+' performs integer addition
+
+a = "He"
+b = "llo"
+print(a + b)               # '+' performs string concatenation
+
+
+# 3. OPERATOR OVERLOADING (User-defined behavior)
+# Operators can be overloaded using magic (dunder) methods
+
+class Rectangle:
+    def __init__(self, length, breadth):
+        self.length = length
+        self.breadth = breadth
+
+    def area(self):
+        # Calculates area of rectangle
+        return self.length * self.breadth
+
+    def __add__(self, other):
+        # Overloads '+' operator for Rectangle objects
+        # Here, '+' adds the lengths of two rectangles
+        return self.length + other.length
+
+r1 = Rectangle(5, 6)
+r2 = Rectangle(6, 9)
+
+print(r1.area())           # Area of first rectangle
+print(r2.area())           # Area of second rectangle
+print(r1 + r2)             # Calls r1.__add__(r2)
+
+
+# 4. METHOD OVERLOADING (Simulated using default arguments)
+# Python does NOT support method overloading directly
+# It can be simulated using default or variable arguments
+
+class Calculator:
+    def add(self, a, b, c=0):
+        # Adds two or three numbers based on arguments passed
+        return a + b + c
+
+calc = Calculator()
+print(calc.add(2, 3))      # Two arguments
+print(calc.add(2, 3, 4))   # Three arguments
+
+
+# 5. METHOD OVERLOADING (Using *args)
+# Allows variable number of arguments
+
+class Calculator2:
+    def add(self, *args):
+        # Adds any number of values
+        return sum(args)
+
+calc2 = Calculator2()
+print(calc2.add(1, 2))
+print(calc2.add(1, 2, 3, 4))
+
+
+# 6. METHOD OVERRIDING (Runtime Polymorphism)
+# Child class provides its own implementation of a method
+
+class Shape:
+    def area(self):
+        print("Area method not defined")
+
+class RectangleShape(Shape):
+    def area(self):
+        print("Area = length * breadth")
+
+rs = RectangleShape()
+rs.area()                  # Child class method is called
+
+
+# 7. POLYMORPHISM USING INHERITANCE
+# Same method name, different behavior in different child classes
+
+class Animal:
+    def sound(self):
+        print("Animal makes a sound")
+
+class Dog(Animal):
+    def sound(self):
+        print("Dog barks")
+
+class Cat(Animal):
+    def sound(self):
+        print("Cat meows")
+
+animals = [Dog(), Cat(), Animal()]
+
+for a in animals:
+    a.sound()               # Calls respective class method
+
+
+# 8. DUCK TYPING
+# Object type does not matter, only method behavior matters
+
+class Bird:
+    def fly(self):
+        print("Bird can fly")
+
+class Airplane:
+    def fly(self):
+        print("Airplane can fly")
+
+def make_it_fly(obj):
+    # Any object with fly() method can be used
+    obj.fly()
+
+b = Bird()
+a = Airplane()
+
+make_it_fly(b)
+make_it_fly(a)
+
+
+# 9. OPERATOR OVERLOADING (Comparison example)
+# Overloading comparison operators
+
+class Number:
+    def __init__(self, value):
+        self.value = value
+
+    def __gt__(self, other):
+        # Overloads '>' operator
+        return self.value > other.value
+
+n1 = Number(10)
+n2 = Number(5)
+
+print(n1 > n2)             # Calls n1.__gt__(n2)
+
+# ============================================================
+# DUNDER (MAGIC) METHODS IN PYTHON – ENHANCED NOTES
+# ============================================================
+# Dunder methods (Double UNDERscore methods) are special methods
+# in Python that begin and end with double underscores.
+#
+# Example:
+#   __add__, __sub__, __len__, __str__, __eq__, etc.
+#
+# These methods define how objects of a class behave with
+# built-in functions and operators.
+# ============================================================
+
+
+"""
+IMPORTANT CONCEPT:
+------------------
+In Python, ALL data types such as:
+int, float, str, bool, list, tuple, dict, etc.
+are actually CLASSES.
+
+The values we use (10, "Hello", True) are OBJECTS of these classes.
+
+Hence, operators like +, -, *, len(), ==, etc. are internally implemented using DUNDER METHODS of these classes.
+"""
+
+
+# 1. HOW TO VIEW DUNDER METHODS OF A DATA TYPE
+"""
+Python provides the help() function to inspect all methods (including dunder methods) of any class.
+
+To view all special methods for integer objects:
+help(int)
+
+To view all special methods for string objects:
+help(str)
+
+To view all special methods for list objects:
+help(list)
+"""
+
+"""
+When you run:
+    help(int)
+
+You will see many dunder methods such as:
+    __add__(self, value, /)
+    __sub__(self, value, /)
+    __mul__(self, value, /)
+    __truediv__(self, value, /)
+    __eq__(self, value, /)
+    __gt__(self, value, /)
+    __lt__(self, value, /)
+    ... and many more
+"""
+
+
+# 2. UNDERSTANDING THE METHOD SIGNATURE
+"""
+Example shown in help(int):
+
+    __add__(self, value, /)
+    Returns self + value
+
+Explanation:
+------------
+- self   → the object on the LEFT side of the operator
+- value  → the object on the RIGHT side of the operator
+
+So when you write:
+    a + b
+
+Python internally converts it to:
+    a.__add__(b)
+"""
+
+
+# PRACTICAL DEMONSTRATION WITH INTEGER
+
+a = 10
+b = 5
+
+print(a + b)          # Normal usage
+print(a.__add__(b))   # Internal method call (same result)
+
+
+# 3. COMMONLY USED DUNDER METHODS
+
+"""
+ARITHMETIC OPERATORS:
+--------------------
++   → __add__()
+-   → __sub__()
+*   → __mul__()
+/   → __truediv__()
+%   → __mod__()
+
+COMPARISON OPERATORS:
+--------------------
+==  → __eq__()
+!=  → __ne__()
+>   → __gt__()
+<   → __lt__()
+>=  → __ge__()
+<=  → __le__()
+
+TYPE CONVERSION:
+----------------
+str(obj)  → __str__()
+int(obj)  → __int__()
+
+BUILT-IN FUNCTIONS:
+-------------------
+len(obj)  → __len__()
+"""
+
+
+# 4. DUNDER METHODS IN USER-DEFINED CLASSES
+# We can define dunder methods in our own classes to customize operator behavior
+
+class Number:
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        # Overloads '+' operator
+        return self.value + other.value
+
+    def __gt__(self, other):
+        # Overloads '>' operator
+        return self.value > other.value
+
+n1 = Number(10)
+n2 = Number(5)
+
+print(n1 + n2)        # Calls n1.__add__(n2)
+print(n1 > n2)        # Calls n1.__gt__(n2)
+
+
+# WHY 'self', 'other', 'value' NAMES ARE USED
+"""
+- 'self'   → Refers to the current object
+- 'other'  → Refers to the second object involved in the operation
+- 'value'  → Generic name used in built-in class definitions
+
+NOTE:
+These names are NOT keywords.
+They are just parameter names used by convention.
+You can rename them, but using standard names improves readability.
+"""
